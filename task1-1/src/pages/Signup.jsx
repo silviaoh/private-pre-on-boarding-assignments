@@ -32,7 +32,7 @@ const Signup = () => {
   // 유효성 검사
   useEffect(() => {
     const emailRegex =
-      /^([0-9a-zA-Z_\.-]+)@([0-9a-zA-Z_-]+)(\.[0-9a-zA-Z_-]+){1,2}$/;
+      /^([0-9a-zA-Z_.-]+)@([0-9a-zA-Z_-]+)(\.[0-9a-zA-Z_-]+){1,2}$/;
     const emailValidation = emailRegex.test(email);
     if (emailValidation) {
       setIsEmail(true);
@@ -67,7 +67,7 @@ const Signup = () => {
     } else {
       setIsValid(false);
     }
-  }, [isEmail, isPassword, isPasswordConfirm]);
+  }, [isEmail, isPassword, isPasswordConfirm, email, password]);
   // input 초기화
   const resetInput = () => {
     setInputInfo('', '');
