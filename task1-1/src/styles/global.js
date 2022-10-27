@@ -1,48 +1,34 @@
 import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
- * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-size: 100%;
-	font: inherit;
-	vertical-align: baseline;
- }
-
- html {
-  font-size: 10px;
- }
-
-  body {
-	  line-height: 1;
+ *{
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
   }
 
-  ol, ul {
-	list-style: none;
+  body{
+    background: linear-gradient(
+      40deg,
+      rgba(208, 62, 103, 1) 0%,
+      rgba(126, 37, 157, 1) 50%,
+      rgba(25, 70, 231, 1) 100%
+    );
   }
-
-  blockquote, q {
-	  quotes: none;
-  }
-
-  blockquote:before, blockquote:after,
-  q:before, q:after {
-	  content: '';
-	  content: none;
-  }
-
-  table {
-	  border-collapse: collapse;
-	  border-spacing: 0;
-  }
-
-  button {
+  
+  button{
     cursor: pointer;
+    outline: none;
+    border: none;
+    background-color: transparent;
   }
 
-  input:focus {
-    outline: none;
+  input{
+    border: none;
+  }
+  input:focus-visible {
+    outline: 0.15rem solid ${({ theme }) => theme.colors.blue};
   }
 `;
 
