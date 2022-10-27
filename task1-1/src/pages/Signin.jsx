@@ -29,7 +29,7 @@ const Signin = () => {
   // 유효성 검사
   useEffect(() => {
     const emailRegex =
-      /^([0-9a-zA-Z_\.-]+)@([0-9a-zA-Z_-]+)(\.[0-9a-zA-Z_-]+){1,2}$/;
+      /^([0-9a-zA-Z_.-]+)@([0-9a-zA-Z_-]+)(\.[0-9a-zA-Z_-]+){1,2}$/;
     const emailValidation = emailRegex.test(email);
 
     if (emailValidation) {
