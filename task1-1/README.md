@@ -19,24 +19,38 @@ git clone https://github.com/silviaoh/wanted-preonboarding-fe-tasks.git
 cd task1-1
 npm install
 npm run start
-
 ```
 
 ## 사용 라이브러리
 
-- React
-- axios
-- styled-components
-- react-icons
+<img src="https://img.shields.io/badge/react-444444?style=for-the-badge&logo=react"> <img src="https://img.shields.io/badge/styled--components-DB7093?style=for-the-badge&logo=styledcomponents&logoColor=white"> <img src="https://img.shields.io/badge/axios-FFCA28?style=for-the-badge&logo=axios&logoColor=white"> <img src="https://img.shields.io/badge/react_router_dom-CA4245?style=for-the-badge&logo=reactrouter&logoColor=white">
+<img src="https://img.shields.io/badge/html5-E34F26?style=for-the-badge&logo=html5&logoColor=white">
 
 ## 최종 src 디렉토리 구조
 
-- apis : api 관련 코드들
-- components : 페이지 컴포넌트에서 분리된 컴포넌트들
-- pages : 페이지 컴포넌트
-- styles : 스타일 관련 파일들
-- index.js
-- router.js : 페이지 라우팅
+```bash
+
+ | - public
+ | - src
+  | - apis
+      | - api.js : axios 통신 모음
+      | - interceptor.js : 인터셉터
+  | - components : 컴포넌트 관련 파일들
+      | - Button.jsx
+      | - CheckAccessToken.jsx : 토큰 유무 확인 컴포넌트
+      | - Input.jsx
+  | - pages
+     | - Signin.jsx : 로그인 루트 컴포넌트
+     | - Signup.jsx : 회원가입 루트 컴포넌트
+     | - TodoList.jsx : 투두리스트 루트 컴포넌트
+  | - styles : 스타일 관련 파일
+     | - common.js
+     | - global.js
+     | - theme.js
+  | - index.js
+  | - router.js
+
+```
 
 ## Best Practice
 
@@ -59,18 +73,71 @@ npm run start
 
 - 매번 axios 요청할 때마다 기본 URL을 설정하거나 또는 공통 headers를 설정할 때 등 겹치는 부분을 반복적으로 작성해주지 않기 위하여 interceptor를 만들어 api 코드에 적용시켰습니다.
 
+```javascript
+const customAxios = axios.create({
+  baseURL: 'https://pre-onboarding-selection-task.shop',
+  timeout: 5000,
+  headers: {
+    'Content-Type': 'application/json',
+  },
+});
+customAxios.interceptors.request.use(
+  config => {
+    config.headers.Authorization = `Bearer ${localStorage.getItem(
+      'access_token'
+    )}`;
+    return config;
+  },
+  error => {
+    return Promise.reject(error);
+  }
+);
+customAxios.interceptors.response.use(
+  response => {
+    return response;
+  },
+  error => {
+    return Promise.reject(error);
+  }
+);
+```
+
+### CheckAccessToken 적용
+
+```javascript
+/**
+ * 로그인 리다이렉트 처리
+ * @param props
+ * @returns 로그인 여부에 따라 적합한 컴포넌트
+ */
+const CheckAccessToken = props => {
+  const { children } = props;
+  const access_token = localStorage.getItem('access_token');
+  const location = useLocation();
+  if (location.pathname === '/' && access_token) {
+    // 로그인 상태일 때 루트 페이지에 접근한다면
+    return <Navigate to="/todo" state={{ from: location }} replace />;
+  } else if (location.pathname === '/todo' && !access_token) {
+    // 로그아웃 상태일 때 투두페이지로 접근한다면
+    return <Navigate to="/" state={{ from: location }} replace />;
+  } else {
+    return children;
+  }
+};
+```
+
 ### 팀으로 원활하게 일하기 위한 결정 사항들
 
 1. commit message
 
-- **Feat** : 새로운 기능 추가
+- **Feat** : 새로운 기능 추가
 - **Modify** : 단순 코드 수정
-- **Fix** : 버그 수정
-- **Docs** : 문서 수정
-- **Style** : 서식 지정, 세미콜론 누락 등 코드 변경이 없는 경우에
-- **Refactor** : 코드 리팩터링
-- **Test** : 누락된 테스트 코드를 추가할 때
-- **Chore** : 빌드 업무나 패키지 매니저 수정할 때
+- **Fix** : 버그 수정
+- **Docs** : 문서 수정
+- **Style** : 서식 지정, 세미콜론 누락 등 코드 변경이 없는 경우에
+- **Refactor** : 코드 리팩터링
+- **Test** : 누락된 테스트 코드를 추가할 때
+- **Chore** : 빌드 업무나 패키지 매니저 수정할 때
 - **Comment** : 필요한 주석 추가 및 변경
 - **Rename** : 파일 혹은 폴더명을 수정하거나 옮기는 작업만인 경우
 - **Remove** : 파일을 삭제하는 작업만 수행한 경우
@@ -81,7 +148,6 @@ ex) 예시
 
 ```
 Feat: 관심지역 알림 ON/OFF 기능 추가
-
 시군구의 알림을 각각 ON/OFF 할 수 있도록 기능을 추가함
  - opnion0055: 구분 코드
 ```
