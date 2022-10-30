@@ -1,7 +1,7 @@
 import { Octokit } from 'octokit';
 
 const octokit = new Octokit({
-  auth: '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',
+  auth: process.env.REACT_APP_GITHUB_TOKEN,
 });
 
 export const getIssuesAPI = async (page = 0) =>
