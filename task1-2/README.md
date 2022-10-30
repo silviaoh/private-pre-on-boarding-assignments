@@ -138,25 +138,23 @@ npm install
 
 **1. 다섯번째 셀에는 광고 이미지 출력**
 
-  <details>
-    <summary>Code 더보기</summary>
-      ```js
-        <React.Fragment key={`${issue.id}${issueIdx}`}>
-             <Link to={`/issue/${issue.number}`}>
-               <IssueItem issue={issue} />
-             </Link>
-             {issueIdx === 4 && (
-               <ImageBox>
-                 <img
-                   src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fuserweb%2Flogo_wanted_black.png&w=110&q=100"
-                   alt="banner"
-                 />
-               </ImageBox>
-             )}
-           </React.Fragment>       
-      ```
-    </details>
-      <br/>
+```js
+<React.Fragment key={`${issue.id}${issueIdx}`}>
+  <Link to={`/issue/${issue.number}`}>
+    <IssueItem issue={issue} />
+  </Link>
+  {issueIdx === 4 && (
+    <ImageBox>
+      <img
+        src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fuserweb%2Flogo_wanted_black.png&w=110&q=100"
+        alt="banner"
+      />
+    </ImageBox>
+  )}
+</React.Fragment>
+```
+
+  <br/>
 
 **2. Infinite Scroll : 화면을 아래로 스크롤 할 시 이슈 목록 추가 로딩**
 
