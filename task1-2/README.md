@@ -42,7 +42,7 @@
 1.  src상단에 .env 파일을 생성합니다.
 
 ```javascript
-  REACT_APP_TOKEN={사용자의 토큰을 입력}
+  REACT_APP_GITHUB_TOKEN={사용자의 토큰을 입력}
 ```
 
 2.  라이브러리를 설치합니다.
@@ -61,7 +61,7 @@ npm install
 
 ### 배포 링크
 
-[배포링크 바로가기](www.naver.com)
+[배포링크 바로가기](https://wanted-preonboarding-fe-tasks.vercel.app/)
 
 <br/>
 

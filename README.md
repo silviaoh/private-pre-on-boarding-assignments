@@ -15,3 +15,11 @@
 - 1주차(2022.10.25[화] ~ 2022.10.28[금])
 - 사전 과제에서 각자 구현한 결과물을 통해 토론하면서 특정 문제를 어떻게 해결하는 게 가장 좋은 방안인지 토론해서 팀의 Best Practice를 산출해주세요.
 - link : [과제1-1](https://github.com/silviaoh/wanted-preonboarding-fe-tasks/tree/main/task1-1)
+
+## 과제 1-2
+
+---
+
+- 1주차(2022.10.29[토] ~ 2022.10.31[월])
+- 특정 깃헙 레파지토리의 이슈 목록과 상세 내용을 확인하는 웹 사이트 구축
+- link : [과제1-2](https://github.com/silviaoh/wanted-preonboarding-fe-tasks/tree/main/task1-2)
