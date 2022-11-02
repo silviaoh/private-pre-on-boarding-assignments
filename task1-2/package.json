@@ -23,9 +23,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "postinstall": "cd .. && husky install",
+    "postinstall": "cd .. &&  rm -rf .husky/pre* && husky install && npx husky add .husky/pre-commit 'cd task1-2&&npm run format' && npx husky add .husky/pre-push 'cd task1-2&&npm run lint'",
     "format": "prettier --cache --write .",
-    "lint": "eslint --cache ./src/**/**"
+    "lint": "eslint --cache ./src/*/*"
   },
   "eslintConfig": {
     "extends": [
